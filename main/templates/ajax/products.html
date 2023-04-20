@@ -1,0 +1,18 @@
+{% for prod in product %}
+<div class="col-md-3 mb-4 product-card">
+    <div class="card shadow">
+        <a href="{% url 'product-details' prod.slug prod.id %}"><img
+                src="/media/{{ prod.productattribute_set.first.image }}" class="card-img-top"
+                alt="{{ prod.title }}"></a>
+        <div class="card-body">
+            <h5 class="card-text"><a href="{% url 'product-details' prod.slug prod.id %}">{{ prod.title }}</a></h5>
+            <h6>$ <span class="">{{ prod.productattribute_set.first.price }}</span></h6>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-sm color-btn add-to-cart" data-index=""><i class="fa fa-shopping-cart"></i></button>
+            <button class="btn btn-sm btn-danger add-wishlist" data-product=""><i class="fa fa-heart"></i></button>
+            </span>
+        </div>
+    </div>
+</div>
+{% endfor %}

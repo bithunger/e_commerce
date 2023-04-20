@@ -1,0 +1,53 @@
+.navbar-collapse {
+    justify-content: right;
+}
+table{
+    border: none;
+}
+.color {
+    background-color: #417690;
+    color: white
+}
+
+.color-btn {
+    background-color: #417690;
+    color: white
+}
+
+.color-btn:hover {
+    background-color: #2b4a5a;
+    color: white
+}
+
+a {
+    text-decoration: none;
+}
+
+.text-small {
+    font-size: smaller;
+}
+
+.filter-block {
+    display: none;
+}
+
+/* .container{
+    display: flex;
+    justify-content: space-evenly;
+} */
+
+
+
+.input{
+    border-radius: 5000px 0 0 5000px;
+    border-color:rgb(99, 102, 102);
+    padding-left: 1rem;
+    margin-left: 25px;
+}
+
+.input-btn {
+    border-radius: 0 5000px 5000px 0;
+    border-color: rgb(41, 45, 46);
+    padding: 0 1.5rem 0 1.5rem;
+}
+

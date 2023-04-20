@@ -1,0 +1,62 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="w-50 mt-4">
+	{% for m in messages %}
+	{% if m.tags == 'error' %}
+	<div class="alert alert-danger alert-dismissible fade show">
+		{{ m }}
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&#215;</span>
+		</button>
+	</div>
+	{% else %}
+	<div class="alert alert-{{ m.tags }} alert-dismissible fade show" role="alert">
+		{{ m }}
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	{% endif %}
+	{% endfor %}
+</div>
+
+<div style="justify-content: center; display: flex">
+	<div class="w-50">
+		<h3 class="my-4 pb-1">Register</h3>
+		<form method="POST">
+			{% csrf_token %}
+			<div class="form-outline mb-4">
+				<input type="text" name="fname" class="form-control" placeholder="First name" required />
+			</div>
+
+			<div class="form-outline mb-4">
+				<input type="text" name="lname" class="form-control" placeholder="Last name" />
+			</div>
+
+			<div class="form-outline mb-4">
+				<input type="text" name="username" class="form-control" placeholder="User name" required />
+			</div>
+
+			<div class="form-outline mb-4">
+				<input type="email" name="email" class="form-control" placeholder="Email address" required />
+			</div>
+
+			<div class="form-outline mb-4">
+				<input type="password" name="pass1" class="form-control" placeholder="Password" required />
+			</div>
+
+			<div class="form-outline mb-4">
+				<input type="password" name="pass2" class="form-control" placeholder="Confirm password" required />
+			</div>
+
+			<button type="submit" class="btn btn-sm color-btn form-control mb-3">Sign in</button>
+
+		</form>
+		<p>Do you already have an account? Please <a href="{% url 'login' %}">login here</a>.</p>
+	</div>
+</div>
+
+{% endblock %}

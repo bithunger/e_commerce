@@ -1,0 +1,86 @@
+<main class="container my-4">
+	<!-- Featured Products -->
+	<h3 class="my-4 pb-1">Filters</h3>
+    <hr class="my-4">
+
+ {% comment %} price filter {% endcomment %}
+    <div class="card mb-4">
+        <h6 class="card-header">Price</h6>
+        <div class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <input class="form-control" oninput="maxPrice.value=this.value" value="{{ minMax.price__min }}" min="{{ minMax.price__min }}" max="{{ minMax.price__max }}" type="range" id="rangePrice"/>
+                    <p><strong style="font-size: 21px">&#2547;</strong>{{ minMax.price__min }} - <strong style="font-size: 21px">&#2547;</strong>{{ minMax.price__max }}</p>
+                </li>
+                <li class="list-group-item">
+                    <input onkeyup="rangePrice.value=this.value" value="{{ minMax.price__min }}" min="{{ minMax.price__min }}" max="{{ minMax.price__max }}" id="maxPrice" type="number"/>
+                    <button id="priceFilter" class="btn color-btn btn-sm mt-2">Filter</button>
+                </li>
+                
+        </div>
+    </div>
+
+    {% comment %} category filter {% endcomment %}
+	<div class="card mb-4">
+        <h6 class="card-header">Categories</h6>
+        <div class="list-group list-group-flush">
+            {% for cat in cat %}
+                <li class="list-group-item">
+                    <input data-filter="category" class="filter-checkbox" value="{{ cat.category__id }}" type="checkbox" />&nbsp;
+                    {{ cat.category__title }}
+                </li>
+            {% endfor %}
+        </div>
+    </div>
+    {% comment %} Color filter {% endcomment %}
+	<div class="card mb-4">
+        <h6 class="card-header">Colors</h6>
+        <div class="list-group list-group-flush">
+            {% for color in color %}
+                <li class="list-group-item">
+                    <input data-filter="color" class="filter-checkbox" value="{{ color.color__id }}" type="checkbox" />&nbsp;
+                    <button class="btn" style="background-color: {{ color.color__color_code }}; margin-top: -5px;"></button>
+                </li>
+            {% endfor %}
+        </div>
+    </div>
+    {% comment %} Size filter {% endcomment %}
+	<div class="card mb-4">
+        <h6 class="card-header">Sizes</h6>
+        <div class="list-group list-group-flush">
+            {% for size in size %}
+                <li class="list-group-item">
+                    <input data-filter="size" class="filter-checkbox" value="{{ size.size__id }}" type="checkbox" />&nbsp;
+                    {{ size.size__title }}
+                </li>
+            {% endfor %}
+        </div>
+    </div>
+    {% comment %} Brand filter {% endcomment %}
+	<div class="card mb-4">
+        <h6 class="card-header">Brands</h6>
+        <div class="list-group list-group-flush">
+            {% for brand in brand %}
+                <li class="list-group-item">
+                    <input data-filter="brand" class="filter-checkbox" value="{{ brand.brand__id }}" type="checkbox" />&nbsp;
+                    {{ brand.brand__title }}
+                </li>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% comment %} <script>
+        $(document).ready(function(){
+            $(".filter-checkbox").on('click', function(){
+                var _filterObj = {};
+                $(".filter-checkbox").each(function(index, ele){
+                    var _filterVal = $(this).val();
+                    var _filterKey = $(this).data('filter');
+                    _filterObj[_filterKey]=Array.from(document.querySelectorAll('input[data-filter'+_filterKey+']:checked')).map(function(){
+                        return el.value;
+                    });
+                });
+                console.log(_filterObj);
+            });
+        });
+    </script> {% endcomment %}
+</main>

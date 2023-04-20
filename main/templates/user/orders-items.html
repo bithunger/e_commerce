@@ -1,0 +1,43 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block title %}E-com | Orders-details{% endblock title %}
+{% block content %}
+<main class="container my-4">
+	<!-- Featured Products -->
+	<h3 class="my-4 pb-1">Orders Items</h3>
+    <hr class="my-4">
+	<div class="row">
+		<div class="col-md-2">
+            {% include "user/dashboard-sidebar.html" %}
+        </div>
+        <div class="col-md-10">
+            <div class="table-responsive">
+                <table class="table-brdered table">
+                    <thead>
+                        <tr>
+                            <th>Invoice no.</th>
+                            <th>Item</th>
+                            <th>Image</th>
+                            <th>Qty</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in ordersItem %}
+                        <tr>
+                            <td>{{ order.invoice }}</td>
+                            <td>{{ order.item }}</td>
+                            <td><img width="20%" src="/media/{{ order.image }}" alt="{{ order.item }}"></td>
+                            <td>{{ order.qty }}</td>
+                            <td>{{ order.price }}</td>
+                            <td>{{ order.total }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+	</div>
+</main>
+{% endblock %}

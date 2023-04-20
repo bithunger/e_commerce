@@ -1,0 +1,39 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block title %}E-com | Orders{% endblock title %}
+{% block content %}
+<main class="container my-4">
+	<!-- Featured Products -->
+	<h3 class="my-4 pb-1">Orders</h3>
+    <hr class="my-4">
+	<div class="row">
+		<div class="col-md-2">
+            {% include "user/dashboard-sidebar.html" %}
+        </div>
+        <div class="col-md-10">
+            <div class="table-responsive">
+                <table class="table-brdered table">
+                    <thead>
+                        <tr>
+                            <th>Order no.</th>
+                            <th>Total ammount</th>
+                            <th>Order time</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in orders %}
+                        <tr>
+                            <td><a href="{% url 'orders_item' order.id %}" class="btn btn-sm btn-dark">{{ order.id }}</a></td>
+                            <td>{{ order.total_amount }}</td>
+                            <td>{{ order.order_date }}</td>
+                            <td>{{ order.paid_status }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+	</div>
+</main>
+{% endblock %}

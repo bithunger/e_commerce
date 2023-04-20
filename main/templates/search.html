@@ -1,0 +1,31 @@
+{% extends "main.html" %}
+{% load static %}
+{% block title %}E-Commerce{% endblock title %}
+{% block content %}
+        <div class="">
+            <h3 class="my-4 border-bottom pb-1"><span class="text-muted">Search items for</span> {{ request.GET.search }} </h3>
+            <div class="row">
+                {% for prod in product %}
+                    <div class="col-md-3 mb-4">
+                        <div class="card shadow">
+                            <a href="{% url 'product-details' prod.slug prod.id %}"><img src="/media/{{ prod.productattribute_set.first.image }}" class="card-img-top" alt="{{ prod.title }}"></a>
+                            <div class="card-body">
+                                <h5 class="card-text"><a href="{% url 'product-details' prod.slug prod.id %}">{{ prod.title }}</a></h5>
+                                <h6>$ <span class="">{{ prod.productattribute_set.first.price }}</span></h6>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-sm color-btn add-to-cart" data-index=""><i
+                                        class="fa fa-shopping-cart"></i></button>
+                                <button class="btn btn-sm btn-danger add-wishlist" data-product=""><i
+                                        class="fa fa-heart"></i></button>
+                                <button class="btn btn-sm btn-danger disabled"><i class="fa fa-heart"></i></button>
+                                <span class="float-right">4.5/5<i class="fa fa-star text-warning"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    <p class="my-4 text-center"><a href="{% url 'products' %}" class="btn color-btn btn-sm">All Products <i class="fa-solid fa-arrow-right-long"></i></a></p>
+{% endblock %}

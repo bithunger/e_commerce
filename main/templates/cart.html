@@ -1,0 +1,70 @@
+{% extends 'main.html' %}
+{% block title %}E-com | Cart{% endblock title %}
+{% load static %}
+{% block content %}
+
+<section class="h-100 h-custom">
+	<div class="container py-5 h-100">
+		<div class="row d-flex justify-content-center align-items-center h-100">
+			<div class="col-12">
+				<div class="card card-registration card-registration-2" style="border-radius: 15px;">
+					<div id="cart-list" class="p-5">
+						<div class="d-flex justify-content-between align-items-center mt-1 p-1">
+							<h2 class="fw-bold mb-0 text-black">Shopping Cart</h2>
+							<h6 class="mb-0 text-muted">{{ total }} items</h6>
+						</div>
+						<hr class="my-4">
+
+						{% if data %}
+
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th>Product</th>
+									<th>Qty</th>
+									<th>Price</th>
+									<th>Total</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for product_id, item in data.items %}
+								<tr>
+									<td>
+										<img src="/media/{{ item.image }}" width="50" alt="Product " />
+										<p><a href="/product-details/{{item.title|slugify}}/{{product_id}}"> {{ item.title }}</a></p>
+									</td>
+									<td>
+										<input type="number" class="qty-{{product_id}}" value="{{ item.qty }}"
+											style="vertical-align: bottom;" />
+										<button class="btn btn-sm btn-primary update-item" data-item="{{product_id}}"><i
+												class="fas fa-edit"></i></button>
+										<button class="btn btn-sm btn-danger delete-item" data-item="{{product_id}}"><i
+												class="fa-solid fa-trash-can"></i></button>
+									</td>
+									<td><strong style="font-size: 21px">&#2547;</strong> {{ item.price }}</td>
+									<td><strong style="font-size: 21px">&#2547;</strong> {% widthratio item.price 1 item.qty %}</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+						<div class="text-right mb-5">
+							<h6 class="text-uppercase">Total price <strong style="font-size: 21px">&#2547;</strong> {{ total_amount }}</h6>
+						</div>
+						<div class="pt-5 d-flex justify-content-between ">
+							<h6 class="mb-0"><a href="{% url 'home' %}" class="text-body"><i
+										class="fas fa-long-arrow-alt-left me-2"></i>Back to shop</a></h6>
+							{% if total %}
+							<a href="{% url 'checkout' %}" type="button" class="btn color-btn">Checkout</a>
+							{% endif %}
+						</div>
+						{% else %}
+						<h6 class="text-muted">You don not added anything in your cart</h6>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+{% endblock %}
