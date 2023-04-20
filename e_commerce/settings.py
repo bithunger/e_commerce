@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-zyot_&fo)(aj@u3d!utmw07y#otc5b3l5g+ga=9u7x$nj0icf@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -80,12 +80,8 @@ WSGI_APPLICATION = 'e_commerce.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django_ecom',
-        'HOST': 'localhost',
-        'USER':'root',
-        'PASSWORD': '',
-        'PORT': 3306,
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
